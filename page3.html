@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT-3</title>
+    <style>
+:root {
+	--color-one: #000000;
+	--color-two: #32312D;
+	--text-color: #FBEBDA;
+	--mem-width: min(38em, calc(100vw - 4em));
+	--mem-height: min(36em, calc(100vw - 6em));
+	--slide-duration: 0.9s;
+	--text-duration: 0.9s;
+	--text-l-height: 1.5em;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+body,
+.t,
+h1,
+h4,
+p,
+ul,
+ol,
+li {
+	margin: 0;
+}
+
+* {
+	margin: 0;
+}
+
+.t {
+	font-family: 'Italiana', serif;  
+	font-size: 60px; 
+}
+
+h1 {
+	font-family: 'Italiana', serif;  
+	font-size: 20px;          
+}
+
+p {
+    font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	font-size: 15px;          
+}
+
+body {
+    font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+
+	color: var(--text-color);
+
+	background-color: #32312D;
+	background-image: url("https://lidachk.github.io/cssBayan/cssBayan/assets/lbg_317.png"),
+		url("https://lidachk.github.io/cssBayan/cssBayan/assets/filter.svg"),
+		linear-gradient(90deg, #000000, #32312D, #FBEBDA);
+	background-repeat: no-repeat, repeat, repeat;
+	background-position: 0% 100%, 0 0, center;
+	background-blend-mode: lighten;
+	background-attachment: fixed;
+	background-size: 100vmin, auto, auto;
+	animation: start1 2s ease-in-out;
+}
+
+@keyframes start {
+	0% {
+		background-blend-mode: color-burn;
+	}
+	50% {
+		background-blend-mode: darken;
+	}
+	100% {
+		background-blend-mode: lighten;
+	}
+}
+@keyframes start1 {
+	0% {
+		background-position: -100% 0, 0 0, center;
+	}
+	100% {
+		background-position: 0 100%, 0 0, center;
+	}
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+}
+
+main {
+	margin: 1em auto;
+	width: var(--mem-width);
+	max-width: 100%;
+	font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	font-size: 0.7rem;
+}
+
+.head {
+	display: block;
+	width: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: 1em 0;
+	text-transform: uppercase;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+ul.item-list {
+	max-width: var(--mem-width);
+	margin: 0 auto;
+}
+
+img {
+	max-width: 100%;
+}
+
+img[width][height] {
+	height: auto;
+}
+
+/* Let SVG scale without boundaries */
+img[src$=".svg"] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+
+input {
+	display: none;
+}
+
+label {
+	width: 100%;
+	/*   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: auto auto;
+	grid-template-areas: "h4 control" "img img";
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+	background-color: #32312D;
+	transition: all 0.35s ease-in-out;
+	padding: 0.5em;
+}
+
+label > h4 {
+	height: var(--text-l-height);
+	overflow: hidden;
+	/*   text-overflow: ellipsis;
+  animation: text-hide var(--text-duration) ease-in-out; */
+	transition: height var(--text-duration) ease-in-out;
+	grid-area: h4;
+}
+
+label > .control {
+	grid-area: control;
+}
+
+label > .slider {
+	grid-area: img;
+}
+
+.slider {
+	margin-top: 1em;
+	overflow: hidden;
+	transition: all var(--slide-duration);
+	height: 0;
+}
+
+input:checked + label > .slider {
+	/*  animation: details-show var(--slide-duration) ease-in-out; */
+	transition: height var(--slide-duration) ease-in-out;
+	height: var(--mem-height);
+}
+
+input:checked + label > h4 {
+	height: calc(var(--text-l-height) * 3);
+	/* animation: text-show var(--text-duration) ease-in-out; */
+	transition: height var(--text-duration) ease-in-out;
+}
+
+input:not(:checked) + label > .slider {
+	/* animation: details-hide var(--slide-duration) ease-in-out; */
+	transition: height var(--slide-duration) ease-in-out;
+	height: 0;
+}
+
+.control {
+	display: block;
+	width: var(--text-l-height);
+	height: var(--text-l-height);
+	background: url(https://lidachk.github.io/cssBayan/cssBayan/assets/control.svg);
+	filter: invert(1%) sepia(42%) saturate(1672%) hue-rotate(167deg)
+		brightness(101%) contrast(87%);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+
+	opacity: 0;
+}
+
+@keyframes details-show {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: var(--mem-height);
+	}
+}
+
+@keyframes details-hide {
+	0% {
+		height: var(--mem-height);
+	}
+
+	100% {
+		height: 0;
+	}
+}
+
+@keyframes text-show {
+	0% {
+		height: var(--text-l-height);
+	}
+
+	100% {
+		height: calc(var(--text-l-height) * 3);
+	}
+}
+
+@keyframes text-hide {
+	0% {
+		height: calc(var(--text-l-height) * 3);
+	}
+
+	100% {
+		height: var(--text-l-height);
+	}
+}
+
+@keyframes glow {
+	0% {
+		filter: drop-shadow(0 -0.2em 0.5em #FBEBDA);
+	}
+
+	100% {
+		filter: drop-shadow(0 -0.2em 0.8em #FBEBDA);
+	}
+}
+
+.label:active > .control,
+.label:active {
+	opacity: 1;
+	animation: 0.9s glow ease-in-out infinite alternate;
+}
+
+@media (hover: hover) {
+	li,
+	label {
+		cursor: pointer;
+	}
+
+	input:not(:checked) + label:hover > .slider {
+		/* animation: details-show var(--slide-duration) ease-in-out; */
+		transition: height var(--slide-duration) ease-in-out;
+		height: var(--mem-height);
+	}
+
+	input:not(:checked) + label:not(:hover) > .slider {
+		/* animation: details-hide var(--slide-duration) ease-in-out; */
+		transition: height var(--slide-duration) ease-in-out;
+		height: 0;
+	}
+
+	input:not(:checked) + label:hover > h4 {
+		/* animation: text-show var(--text-duration) ease-in-out; */
+		transition: height var(--text-duration) ease-in-out;
+		height: calc(var(--text-l-height) * 3);
+	}
+
+	input:not(:checked) + label:not(:hover) > h4 {
+		/* animation: text-hide var(--text-duration) ease-in-out; */
+		transition: height var(--text-duration) ease-in-out;
+		height: var(--text-l-height);
+	}
+
+	ul:hover .control {
+		opacity: 1;
+	}
+}
+
+@media all and (min-width: 820px) and (max-width: 1022px) {
+	/*tablet*/
+	body {
+		background-image:linear-gradient(0deg, #000000, #32312D, #FBEBDA);
+	}
+
+	.label {
+		padding: 1em;
+	}
+
+	main {
+		font-size: 1rem;
+	}
+}
+
+@media all and (min-width: 1023px) {
+	/*descktop*/
+	:root {
+		--mem-width: 38rem;
+		--mem-height: 36rem;
+	}
+
+	body {
+		background-image: url("ZencorePNG.png"),
+			url("https://lidachk.github.io/cssBayan/cssBayan/assets/filter.svg"),
+			linear-gradient(40deg, #000000, #32312D, #FBEBDA);
+	}
+
+	.head {
+		margin: 1em 0;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 60px;
+	}
+
+	.label {
+		padding: 1rem;
+	}
+
+	body {
+		background-size: min(calc(50wv-20rem), 100vmin), auto, auto;
+	}
+
+	main {
+		font-size: 1.5rem;
+	}
+}
+    </style>
+</head>
+<body>
+
+    <body>
+        <main>
+            <h1 class="head">ZenCore</h1>
+            <ul class="item-list">
+                <li class="item1">
+                    <input type="radio" name="point" id="slide1" checked>
+                    <label for="slide1" class="label">
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/6c/93/d1/6c93d19103958dd990d70e3a151283b1.jpg 320w,
+                            https://i.pinimg.com/736x/6c/93/d1/6c93d19103958dd990d70e3a151283b1.jpg 469w,
+                            https://i.pinimg.com/736x/6c/93/d1/6c93d19103958dd990d70e3a151283b1.jpg 589w" src="https://i.pinimg.com/736x/6c/93/d1/6c93d19103958dd990d70e3a151283b1.jpg" alt="slay Cthulhu with code" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item2">
+                    <input type="radio" name="point" id="slide2">
+                    <label for="slide2" class="label">
+                        <h1>Key Features</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 300px) 100vw" srcset="
+                            https://i.pinimg.com/736x/25/9e/ce/259ece3d39d955f398dac1f75f65dd38.jpg 320w,
+                            https://i.pinimg.com/736x/25/9e/ce/259ece3d39d955f398dac1f75f65dd38.jpg 468w,
+                            https://i.pinimg.com/736x/25/9e/ce/259ece3d39d955f398dac1f75f65dd38.jpg 589w" src="https://i.pinimg.com/736x/25/9e/ce/259ece3d39d955f398dac1f75f65dd38.jpg" alt="Code my mighty shield" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item3">
+                    <input type="radio" name="point" id="slide3">
+                    <label for="slide3" class="label">
+						<h1>Key Features: Break Times</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/d6/cf/5c/d6cf5c5451f14844d5726d85c28c0961.jpg 320w,
+                            https://i.pinimg.com/736x/d6/cf/5c/d6cf5c5451f14844d5726d85c28c0961.jpg 468w,
+                            https://i.pinimg.com/736x/d6/cf/5c/d6cf5c5451f14844d5726d85c28c0961.jpg 589w" src="https://i.pinimg.com/736x/d6/cf/5c/d6cf5c5451f14844d5726d85c28c0961.jpg" alt=" Cthulhu's tentacles" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>Key Features: Meal Time & De-Stress Days</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/11/cc/c9/11ccc9194fe763f7f35b79e9b349d113.jpg 320w,
+                            https://i.pinimg.com/736x/11/cc/c9/11ccc9194fe763f7f35b79e9b349d113.jpg 468w,
+                            https://i.pinimg.com/736x/11/cc/c9/11ccc9194fe763f7f35b79e9b349d113.jpg 589w" src="https://i.pinimg.com/736x/11/cc/c9/11ccc9194fe763f7f35b79e9b349d113.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+				<li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>Key Features: Post Work</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/5f/72/a3/5f72a3b95e415dab7f4313f299e0f4c2.jpg 320w,
+                            https://i.pinimg.com/736x/5f/72/a3/5f72a3b95e415dab7f4313f299e0f4c2.jpg 468w,
+                            https://i.pinimg.com/736x/5f/72/a3/5f72a3b95e415dab7f4313f299e0f4c2.jpg 589w" src="https://i.pinimg.com/736x/5f/72/a3/5f72a3b95e415dab7f4313f299e0f4c2.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item5">
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>How does ZenCore assist during the shift?</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/474x/4a/c8/40/4ac8404e95777b42a5ce7080c62ffcd4.jpg 320w,
+                            https://i.pinimg.com/474x/4a/c8/40/4ac8404e95777b42a5ce7080c62ffcd4.jpg 468w,
+                            https://i.pinimg.com/474x/4a/c8/40/4ac8404e95777b42a5ce7080c62ffcd4.jpg 589w" src="https://i.pinimg.com/474x/4a/c8/40/4ac8404e95777b42a5ce7080c62ffcd4.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+				<li class="item2"></li>
+                    <input type="radio" name="point" id="slide2">
+                    <label for="slide2" class="label">
+                        <h1>ZenCore environments & Products</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 300px) 100vw" srcset="
+                            https://i.pinimg.com/736x/73/61/90/73619037c03559ff67c492a51fbeb8b2.jpg 320w,
+                            https://i.pinimg.com/736x/73/61/90/73619037c03559ff67c492a51fbeb8b2.jpg 468w,
+                            https://i.pinimg.com/736x/73/61/90/73619037c03559ff67c492a51fbeb8b2.jpg 589w" src="https://i.pinimg.com/736x/73/61/90/73619037c03559ff67c492a51fbeb8b2.jpg" alt="Code my mighty shield" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item3">
+                    <input type="radio" name="point" id="slide3">
+                    <label for="slide3" class="label">
+                        <h1>ZenCore Notifications</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/9f/3b/ce/9f3bce4e2641597f82dc7f7b43a4102f.jpg 320w,
+                            https://i.pinimg.com/736x/9f/3b/ce/9f3bce4e2641597f82dc7f7b43a4102f.jpg 468w,
+                            https://i.pinimg.com/736x/9f/3b/ce/9f3bce4e2641597f82dc7f7b43a4102f.jpg 589w" src="https://i.pinimg.com/736x/9f/3b/ce/9f3bce4e2641597f82dc7f7b43a4102f.jpg" alt=" Cthulhu's tentacles" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>Support System with ZenCore</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/6b/84/44/6b8444a17d86c41c5a69afe3db6b08a1.jpg 320w,
+							https://i.pinimg.com/736x/6b/84/44/6b8444a17d86c41c5a69afe3db6b08a1.jpg 468w,
+                            https://i.pinimg.com/736x/6b/84/44/6b8444a17d86c41c5a69afe3db6b08a1.jpg 589w" src="https://i.pinimg.com/736x/6b/84/44/6b8444a17d86c41c5a69afe3db6b08a1.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item5">
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>ZenCore Reminders</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/c7/a6/04/c7a604893036a1e28adeee51fc358a03.jpg 320w,
+                            https://i.pinimg.com/736x/c7/a6/04/c7a604893036a1e28adeee51fc358a03.jpg 468w,
+                            https://i.pinimg.com/736x/c7/a6/04/c7a604893036a1e28adeee51fc358a03.jpg 589w" src="https://i.pinimg.com/736x/c7/a6/04/c7a604893036a1e28adeee51fc358a03.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item5">
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>ZenCore De-Stress Days</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/ec/f7/12/ecf71239a46fea4f2426e3e0ed2b359d.jpg 320w,
+                            https://i.pinimg.com/736x/ec/f7/12/ecf71239a46fea4f2426e3e0ed2b359d.jpg 468w,
+                            https://i.pinimg.com/736x/ec/f7/12/ecf71239a46fea4f2426e3e0ed2b359d.jpg 589w" src="https://i.pinimg.com/736x/ec/f7/12/ecf71239a46fea4f2426e3e0ed2b359d.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+				<li class="item5"></li>
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>Why ZenCore</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/b1/90/42/b19042543f1ece36e72c9c167e14a06c.jpg 320w,
+                            https://i.pinimg.com/736x/b1/90/42/b19042543f1ece36e72c9c167e14a06c.jpg 468w,
+                            https://i.pinimg.com/736x/b1/90/42/b19042543f1ece36e72c9c167e14a06c.jpg 589w" src="https://i.pinimg.com/736x/b1/90/42/b19042543f1ece36e72c9c167e14a06c.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item5"></li>
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>The Team</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/ec/09/ad/ec09ad96703185ab7bad9824500743d5.jpg 320w,
+                            https://i.pinimg.com/736x/ec/09/ad/ec09ad96703185ab7bad9824500743d5.jpg 468w,
+                            https://i.pinimg.com/736x/ec/09/ad/ec09ad96703185ab7bad9824500743d5.jpg 589w" src="https://i.pinimg.com/736x/ec/09/ad/ec09ad96703185ab7bad9824500743d5.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </main>
+    </body>
+    
+    </html>
+    
+</body>
+</html>

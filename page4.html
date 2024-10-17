@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT-4</title>
+    <style>
+:root {
+	--color-one: #000000;
+	--color-two: #32312D;
+	--text-color: #FBEBDA;
+	--mem-width: min(38em, calc(100vw - 4em));
+	--mem-height: min(36em, calc(100vw - 6em));
+	--slide-duration: 0.9s;
+	--text-duration: 0.9s;
+	--text-l-height: 1.5em;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+ul {
+	padding: 0;
+	list-style: none;
+}
+
+body,
+.t,
+h1,
+h4,
+p,
+ul,
+ol,
+li {
+	margin: 0;
+}
+
+* {
+	margin: 0;
+}
+
+.t {
+	font-family: 'Italiana', serif;  
+	font-size: 60px; 
+}
+
+h1 {
+	font-family: 'Italiana', serif;  
+	font-size: 20px;          
+}
+
+p {
+    font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	font-size: 15px;          
+}
+
+body {
+    font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	min-height: 100vh;
+	scroll-behavior: smooth;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+
+	color: var(--text-color);
+
+	background-color: #32312D;
+	background-image: url("https://lidachk.github.io/cssBayan/cssBayan/assets/lbg_317.png"),
+		url("https://lidachk.github.io/cssBayan/cssBayan/assets/filter.svg"),
+		linear-gradient(90deg, #000000, #32312D, #FBEBDA);
+	background-repeat: no-repeat, repeat, repeat;
+	background-position: 0% 100%, 0 0, center;
+	background-blend-mode: lighten;
+	background-attachment: fixed;
+	background-size: 100vmin, auto, auto;
+	animation: start1 2s ease-in-out;
+}
+
+@keyframes start {
+	0% {
+		background-blend-mode: color-burn;
+	}
+	50% {
+		background-blend-mode: darken;
+	}
+	100% {
+		background-blend-mode: lighten;
+	}
+}
+@keyframes start1 {
+	0% {
+		background-position: -100% 0, 0 0, center;
+	}
+	100% {
+		background-position: 0 100%, 0 0, center;
+	}
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+}
+
+main {
+	margin: 1em auto;
+	width: var(--mem-width);
+	max-width: 100%;
+	font-family: 'Lato', Arial, sans-serif;
+	font-weight: 100px;
+	font-size: 0.7rem;
+}
+
+.head {
+	display: block;
+	width: 100%;
+	height: auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+	margin: 1em 0;
+	text-transform: uppercase;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+ul.item-list {
+	max-width: var(--mem-width);
+	margin: 0 auto;
+}
+
+img {
+	max-width: 100%;
+}
+
+img[width][height] {
+	height: auto;
+}
+
+/* Let SVG scale without boundaries */
+img[src$=".svg"] {
+	width: 100%;
+	height: auto;
+	max-width: none;
+}
+
+input {
+	display: none;
+}
+
+label {
+	width: 100%;
+	/*   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; */
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: auto auto;
+	grid-template-areas: "h4 control" "img img";
+	margin-bottom: 1em;
+	border-radius: 0.5em;
+	background-color: #32312D;
+	transition: all 0.35s ease-in-out;
+	padding: 0.5em;
+}
+
+label > h4 {
+	height: var(--text-l-height);
+	overflow: hidden;
+	/*   text-overflow: ellipsis;
+  animation: text-hide var(--text-duration) ease-in-out; */
+	transition: height var(--text-duration) ease-in-out;
+	grid-area: h4;
+}
+
+label > .control {
+	grid-area: control;
+}
+
+label > .slider {
+	grid-area: img;
+}
+
+.slider {
+	margin-top: 1em;
+	overflow: hidden;
+	transition: all var(--slide-duration);
+	height: 0;
+}
+
+input:checked + label > .slider {
+	/*  animation: details-show var(--slide-duration) ease-in-out; */
+	transition: height var(--slide-duration) ease-in-out;
+	height: var(--mem-height);
+}
+
+input:checked + label > h4 {
+	height: calc(var(--text-l-height) * 3);
+	/* animation: text-show var(--text-duration) ease-in-out; */
+	transition: height var(--text-duration) ease-in-out;
+}
+
+input:not(:checked) + label > .slider {
+	/* animation: details-hide var(--slide-duration) ease-in-out; */
+	transition: height var(--slide-duration) ease-in-out;
+	height: 0;
+}
+
+.control {
+	display: block;
+	width: var(--text-l-height);
+	height: var(--text-l-height);
+	background: url(https://lidachk.github.io/cssBayan/cssBayan/assets/control.svg);
+	filter: invert(1%) sepia(42%) saturate(1672%) hue-rotate(167deg)
+		brightness(101%) contrast(87%);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+	-o-transition: all 0.3s ease;
+
+	opacity: 0;
+}
+
+@keyframes details-show {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: var(--mem-height);
+	}
+}
+
+@keyframes details-hide {
+	0% {
+		height: var(--mem-height);
+	}
+
+	100% {
+		height: 0;
+	}
+}
+
+@keyframes text-show {
+	0% {
+		height: var(--text-l-height);
+	}
+
+	100% {
+		height: calc(var(--text-l-height) * 3);
+	}
+}
+
+@keyframes text-hide {
+	0% {
+		height: calc(var(--text-l-height) * 3);
+	}
+
+	100% {
+		height: var(--text-l-height);
+	}
+}
+
+@keyframes glow {
+	0% {
+		filter: drop-shadow(0 -0.2em 0.5em #FBEBDA);
+	}
+
+	100% {
+		filter: drop-shadow(0 -0.2em 0.8em #FBEBDA);
+	}
+}
+
+.label:active > .control,
+.label:active {
+	opacity: 1;
+	animation: 0.9s glow ease-in-out infinite alternate;
+}
+
+@media (hover: hover) {
+	li,
+	label {
+		cursor: pointer;
+	}
+
+	input:not(:checked) + label:hover > .slider {
+		/* animation: details-show var(--slide-duration) ease-in-out; */
+		transition: height var(--slide-duration) ease-in-out;
+		height: var(--mem-height);
+	}
+
+	input:not(:checked) + label:not(:hover) > .slider {
+		/* animation: details-hide var(--slide-duration) ease-in-out; */
+		transition: height var(--slide-duration) ease-in-out;
+		height: 0;
+	}
+
+	input:not(:checked) + label:hover > h4 {
+		/* animation: text-show var(--text-duration) ease-in-out; */
+		transition: height var(--text-duration) ease-in-out;
+		height: calc(var(--text-l-height) * 3);
+	}
+
+	input:not(:checked) + label:not(:hover) > h4 {
+		/* animation: text-hide var(--text-duration) ease-in-out; */
+		transition: height var(--text-duration) ease-in-out;
+		height: var(--text-l-height);
+	}
+
+	ul:hover .control {
+		opacity: 1;
+	}
+}
+
+@media all and (min-width: 820px) and (max-width: 1022px) {
+	/*tablet*/
+	body {
+		background-image:linear-gradient(0deg, #000000, #32312D, #FBEBDA);
+	}
+
+	.label {
+		padding: 1em;
+	}
+
+	main {
+		font-size: 1rem;
+	}
+}
+
+@media all and (min-width: 1023px) {
+	/*descktop*/
+	:root {
+		--mem-width: 38rem;
+		--mem-height: 36rem;
+	}
+
+	body {
+		background-image: url("IgniSense.png"),
+			url("https://lidachk.github.io/cssBayan/cssBayan/assets/filter.svg"),
+			linear-gradient(40deg, #000000, #32312D, #FBEBDA);
+	}
+
+	.head {
+		margin: 1em 0;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 60px;
+	}
+
+	.label {
+		padding: 1rem;
+	}
+
+	body {
+		background-size: min(calc(50wv-20rem), 100vmin), auto, auto;
+	}
+
+	main {
+		font-size: 1.5rem;
+	}
+}
+    </style>
+</head>
+<body>
+
+    <body>
+        <main>
+            <h1 class="head">IgniSense</h1>
+            <ul class="item-list">
+                <li class="item1">
+                    <input type="radio" name="point" id="slide1" checked>
+                    <label for="slide1" class="label">
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/e1/84/4e/e1844e0e016bdf18ffd70edba0d6b59f.jpg 320w,
+                            https://i.pinimg.com/736x/e1/84/4e/e1844e0e016bdf18ffd70edba0d6b59f.jpg 469w,
+                            https://i.pinimg.com/736x/e1/84/4e/e1844e0e016bdf18ffd70edba0d6b59f.jpg 589w" src="https://i.pinimg.com/736x/e1/84/4e/e1844e0e016bdf18ffd70edba0d6b59f.jpg" alt="slay Cthulhu with code" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item2">
+                    <input type="radio" name="point" id="slide2">
+                    <label for="slide2" class="label">
+                        <h1>Why IgniSense & Goal</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 300px) 100vw" srcset="
+                            https://i.pinimg.com/736x/fc/ca/5d/fcca5d32eeb45f1e36b6c1c8744ef70f.jpg 320w,
+                            https://i.pinimg.com/736x/fc/ca/5d/fcca5d32eeb45f1e36b6c1c8744ef70f.jpg 468w,
+                            https://i.pinimg.com/736x/fc/ca/5d/fcca5d32eeb45f1e36b6c1c8744ef70f.jpg 589w" src="https://i.pinimg.com/736x/fc/ca/5d/fcca5d32eeb45f1e36b6c1c8744ef70f.jpg" alt="Code my mighty shield" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item3">
+                    <input type="radio" name="point" id="slide3">
+                    <label for="slide3" class="label">
+						<h1>The Environment</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/e3/39/b1/e339b16ad8be9c22a6ba546597f2162f.jpg 320w,
+                            https://i.pinimg.com/736x/e3/39/b1/e339b16ad8be9c22a6ba546597f2162f.jpg 468w,
+                            https://i.pinimg.com/736x/e3/39/b1/e339b16ad8be9c22a6ba546597f2162f.jpg 589w" src="https://i.pinimg.com/736x/e3/39/b1/e339b16ad8be9c22a6ba546597f2162f.jpg" alt=" Cthulhu's tentacles" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>The Users</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/af/d6/a9/afd6a94c500916fa64c40d9d674b9fc1.jpg 320w,
+                            https://i.pinimg.com/736x/af/d6/a9/afd6a94c500916fa64c40d9d674b9fc1.jpg 468w,
+                            https://i.pinimg.com/736x/af/d6/a9/afd6a94c500916fa64c40d9d674b9fc1.jpg 589w" src="https://i.pinimg.com/736x/af/d6/a9/afd6a94c500916fa64c40d9d674b9fc1.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+				<li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>User Interviews & Insights</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/474x/f0/b0/57/f0b057cb52861be4093f4a1ec6f7769b.jpg 320w,
+                            https://i.pinimg.com/474x/f0/b0/57/f0b057cb52861be4093f4a1ec6f7769b.jpg 468w,
+                            https://i.pinimg.com/474x/f0/b0/57/f0b057cb52861be4093f4a1ec6f7769b.jpg 589w" src="https://i.pinimg.com/474x/f0/b0/57/f0b057cb52861be4093f4a1ec6f7769b.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item2"></li>
+                    <input type="radio" name="point" id="slide2">
+                    <label for="slide2" class="label">
+                        <h1>Problems Identified</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 300px) 100vw" srcset="
+                            https://i.pinimg.com/736x/54/a6/32/54a632b933ff8e193d180c129460b7db.jpg 320w,
+                            https://i.pinimg.com/736x/54/a6/32/54a632b933ff8e193d180c129460b7db.jpg 468w,
+                            https://i.pinimg.com/736x/54/a6/32/54a632b933ff8e193d180c129460b7db.jpg 589w" src="https://i.pinimg.com/736x/54/a6/32/54a632b933ff8e193d180c129460b7db.jpg" alt="Code my mighty shield" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item5">
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>User Journeys & Secondary Research</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/f6/93/e0/f693e04aa13662829621acfac48c5bf5.jpg 320w,
+                            https://i.pinimg.com/736x/f6/93/e0/f693e04aa13662829621acfac48c5bf5.jpg 468w,
+                            https://i.pinimg.com/736x/f6/93/e0/f693e04aa13662829621acfac48c5bf5.jpg 589w" src="https://i.pinimg.com/736x/f6/93/e0/f693e04aa13662829621acfac48c5bf5.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item3">
+                    <input type="radio" name="point" id="slide3">
+                    <label for="slide3" class="label">
+						<h1>Introducing IgniSense</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/0e/28/15/0e28150b4b9d9a56d30d66d220f6e935.jpg 320w,
+                            https://i.pinimg.com/736x/0e/28/15/0e28150b4b9d9a56d30d66d220f6e935.jpg 468w,
+                            https://i.pinimg.com/736x/0e/28/15/0e28150b4b9d9a56d30d66d220f6e935.jpg 589w" src="https://i.pinimg.com/736x/0e/28/15/0e28150b4b9d9a56d30d66d220f6e935.jpg" alt=" Cthulhu's tentacles" />
+                        </div>
+                    </label>
+                </li>
+                <li class="item4">
+                    <input type="radio" name="point" id="slide4">
+                    <label for="slide4" class="label">
+						<h1>What IgniSense Offers-1</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/79/48/4b/79484bcc7365928f7110c67891a9dacc.jpg 320w,
+							https://i.pinimg.com/736x/79/48/4b/79484bcc7365928f7110c67891a9dacc.jpg 468w,
+                            https://i.pinimg.com/736x/79/48/4b/79484bcc7365928f7110c67891a9dacc.jpg 589w" src="https://i.pinimg.com/736x/79/48/4b/79484bcc7365928f7110c67891a9dacc.jpg" alt=" Codewars and Cthulhu" />
+                        </div>
+                    </label>
+                </li>
+				<li class="item5"></li>
+                    <input type="radio" name="point" id="slide5">
+                    <label for="slide5" class="label">
+						<h1>What IgniSense Offers-2</h1><br>
+                        <div class="slider ">
+                            <img sizes="(max-width: 589px) 100vw" srcset="
+                            https://i.pinimg.com/736x/11/1c/ae/111caece492b784a12fea8692cb8e1ab.jpg 320w,
+                            https://i.pinimg.com/736x/11/1c/ae/111caece492b784a12fea8692cb8e1ab.jpg 468w,
+                            https://i.pinimg.com/736x/11/1c/ae/111caece492b784a12fea8692cb8e1ab.jpg 589w" src="https://i.pinimg.com/736x/11/1c/ae/111caece492b784a12fea8692cb8e1ab.jpg" alt="Cthulhu's code no match for me" />
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </main>
+    </body>
+    
+    </html>
+    
+</body>
+</html>
